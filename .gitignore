@@ -1,0 +1,11 @@
+# idea
+.idea
+
+# Node
+node_modules
+npm-debug.log
+
+# project
+.tmp
+logs
+lib
