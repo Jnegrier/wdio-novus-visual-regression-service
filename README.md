@@ -1,5 +1,5 @@
 
-> Visual regression testing with WebdriverIO.
+> Visual regression testing with WebdriverIO V5.
 
 Based on the work of Jan-André Zinser on [wdio-visual-regression-service](https://github.com/zinserjan/wdio-visual-regression-service) and [wdio-screenshot](https://github.com/zinserjan/wdio-screenshot)
 
