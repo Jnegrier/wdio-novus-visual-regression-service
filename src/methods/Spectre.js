@@ -31,9 +31,9 @@ export default class Spectre extends BaseCompare {
   async processScreenshot(context, base64Screenshot) {
     const runDetails = await this.getRuntimeConfig(runtimeConfigName);
     const testrunID = runDetails.id;
-    const test = this.test(context);
-    const browser = this.browser(context);
-    const size = this.size(context);
+    const test = await this.test(context);
+    const browser = await this.browser(context);
+    const size = await this.size(context);
     const fuzzLevel = `${_.get(context, 'options.fuzzLevel', this.fuzzLevel)}%`;
     const url = _.get(context, 'meta.url', undefined);
 
