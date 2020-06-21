@@ -1,6 +1,8 @@
 
 > Visual regression testing with WebdriverIO V5.
 
+[![Build Status](https://travis-ci.com/Jnegrier/wdio-novus-visual-regression-service.svg?branch=master)](https://travis-ci.com/Jnegrier/wdio-novus-visual-regression-service)
+
 Based on the work of Jan-André Zinser on [wdio-visual-regression-service](https://github.com/zinserjan/wdio-visual-regression-service) and [wdio-screenshot](https://github.com/zinserjan/wdio-screenshot)
 
 ## Installation
