@@ -1,5 +1,5 @@
 
-> Visual regression testing with WebdriverIO V5.
+> Visual regression testing for WebdriverIO V6.
 
 [![Build Status](https://travis-ci.com/Jnegrier/wdio-novus-visual-regression-service.svg?branch=master)](https://travis-ci.com/Jnegrier/wdio-novus-visual-regression-service)
 
@@ -16,7 +16,7 @@ $ npm install wdio-novus-visual-regression-service --save-dev
 Instructions on how to install `WebdriverIO` can be found [here.](http://webdriver.io/guide/getstarted/install.html)
 
 ## Configuration
-Setup wdio-novus-visual-regression-service by adding `novus-visual-regression` to the service section of your WebdriverIO config and define your desired comparison strategy in `visualRegression`.
+Setup wdio-novus-visual-regression-service by adding `novus-visual-regression` to the service section of your WebdriverIO config and define your desired comparison strategy in the service options.
 
 ```js
 // wdio.conf.js
@@ -41,19 +41,21 @@ function getScreenshotName(basePath) {
 exports.config = {
   // ...
   services: [
-    'novus-visual-regression',
+    [
+      'novus-visual-regression',
+      {
+        compare: new VisualRegressionCompare.LocalCompare({
+          referenceName: getScreenshotName(path.join(process.cwd(), 'screenshots/reference')),
+          screenshotName: getScreenshotName(path.join(process.cwd(), 'screenshots/screen')),
+          diffName: getScreenshotName(path.join(process.cwd(), 'screenshots/diff')),
+          misMatchTolerance: 0.01,
+        }),
+        viewportChangePause: 300,
+        viewports: [{ width: 320, height: 480 }, { width: 480, height: 320 }, { width: 1024, height: 768 }],
+        orientations: ['landscape', 'portrait'],
+      }
+    ]
   ],
-  visualRegression: {
-    compare: new VisualRegressionCompare.LocalCompare({
-      referenceName: getScreenshotName(path.join(process.cwd(), 'screenshots/reference')),
-      screenshotName: getScreenshotName(path.join(process.cwd(), 'screenshots/screen')),
-      diffName: getScreenshotName(path.join(process.cwd(), 'screenshots/diff')),
-      misMatchTolerance: 0.01,
-    }),
-    viewportChangePause: 300,
-    viewports: [{ width: 320, height: 480 }, { width: 480, height: 320 }, { width: 1024, height: 768 }],
-    orientations: ['landscape', 'portrait'],
-  },
   // ...
 };
 ```
@@ -96,7 +98,7 @@ number between 0 and 100 that defines the degree of mismatch to consider two ima
 * **ignoreComparison** `String`  ( default: nothing ) <br>
 pass in a string with value of `nothing` , `colors` or `antialiasing` to adjust the comparison method.
 
-For an example of generating screenshot filesnames dependent on the current test name, have a look at the sample code of [Configuration](#configuration).
+For an example of generating screenshot filenames dependent on the current test name, have a look at the sample code of [Configuration](#configuration).
 
 #### VisualRegressionCompare.SaveScreenshot
 This method is a stripped variant of `VisualRegressionCompare.LocalCompare` to capture only screenshots. This is quite useful when you just want to create reference screenshots and overwrite the previous one without diffing.
@@ -143,28 +145,30 @@ var VisualRegressionCompare = require('wdio-novus-visual-regression-service/comp
 exports.config = {
   // ...
   services: [
-    'novus-visual-regression',
+    [
+      'novus-visual-regression',
+      {
+        compare: new VisualRegressionCompare.Spectre({
+          url: 'http://localhost:3000',
+          project: 'my project',
+          suite: 'my test suite',
+          test: function getTest(context) {
+            return context.test.title;
+          },
+          browser: function getBrowser(context) {
+            return context.browser.name;
+          },
+          size: function getSize(context) {
+            return context.meta.viewport != null ? context.meta.viewport.width : context.meta.orientation;
+          },
+          fuzzLevel: 30
+        }),
+        viewportChangePause: 300,
+        viewports: [{ width: 320, height: 480 }, { width: 480, height: 320 }, { width: 1024, height: 768 }],
+        orientations: ['landscape', 'portrait'],
+      }
+    ]
   ],
-  visualRegression: {
-    compare: new VisualRegressionCompare.Spectre({
-      url: 'http://localhost:3000',
-      project: 'my project',
-      suite: 'my test suite',
-      test: function getTest(context) {
-        return context.test.title;
-      },
-      browser: function getBrowser(context) {
-        return context.browser.name;
-      },
-      size: function getSize(context) {
-        return context.meta.viewport != null ? context.meta.viewport.width : context.meta.orientation;
-      },
-      fuzzLevel: 30
-    }),
-    viewportChangePause: 300,
-    viewports: [{ width: 320, height: 480 }, { width: 480, height: 320 }, { width: 1024, height: 768 }],
-    orientations: ['landscape', 'portrait'],
-  },
   // ...
 };
 ```
@@ -176,7 +180,7 @@ wdio-novus-visual-regression-service enhances an WebdriverIO instance with the f
 * `browser.checkElement(elementSelector, [{options}]);`
 
 
-All of these provide options that will help you to capture screenshots in different dimensions or to exclude unrelevant parts (e.g. content). The following options are
+All of these provide options that will help you to capture screenshots in different dimensions or to exclude irrelevant parts (e.g. content). The following options are
 available:
 
 

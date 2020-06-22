@@ -1,6 +1,6 @@
 {
   "name": "wdio-novus-visual-regression-service",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Novus Visual regression testing for WebdriverIO",
   "main": "index.js",
   "files": [
@@ -41,7 +41,8 @@
     "node-resemble-js": "0.0.5",
     "nodeclient-spectre": "^1.0.3",
     "platform": "^1.3.1",
-    "uuid": "^8.1.0"
+    "uuid": "^8.1.0",
+    "image-size": "^0.8.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -59,7 +60,6 @@
     "@wdio/selenium-standalone-service": "^5.0.0",
     "@wdio/sync": "^5.0.0",
     "chai": "^3.5.0",
-    "image-size": "^0.7.4",
     "mocha": "^6.1.4",
     "nock": "^9.2.3",
     "np": "^2.10.0",

@@ -11,7 +11,8 @@ import { mapViewports, mapOrientations } from './modules/mapViewports';
 const log = logger('wdio-novus-visual-regression-service');
 
 class VisualRegressionLauncher {
-  constructor() {
+  constructor(options) {
+    this.options = options;
     this.currentSuite = null;
     this.currentTest = null;
     this.currentFeature = null;
@@ -27,7 +28,7 @@ class VisualRegressionLauncher {
   async onPrepare(config) {
     this.validateConfig(config);
     log.setLevel(config.logLevel || 'info');
-    this.compare = config.visualRegression.compare;
+    this.compare = this.options.compare;
     log.info('Launching onPrepare functions');
     await this.runHook('onPrepare');
   }
@@ -43,7 +44,7 @@ class VisualRegressionLauncher {
   async before(capabilities, specs) {
     this.validateConfig(browser.config);
 
-    this.compare = browser.config.visualRegression.compare;
+    this.compare = this.options.compare;
     this.viewportChangePause = _.get(browser.config, 'visualRegression.viewportChangePause', 100);
     this.viewports = _.get(browser.config, 'visualRegression.viewports');
     this.orientations = _.get(browser.config, 'visualRegression.orientations');
@@ -175,7 +176,7 @@ class VisualRegressionLauncher {
   }
 
   validateConfig(config) {
-    if (!_.isPlainObject(config.visualRegression) || !_.has(config.visualRegression, 'compare')) {
+    if (!_.isPlainObject(this.options) || !_.has(this.options, 'compare')) {
       throw new Error('Please provide a visualRegression configuration with a compare method in your wdio-conf.js!');
     }
   }
