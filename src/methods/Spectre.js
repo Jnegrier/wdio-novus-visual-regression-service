@@ -1,6 +1,8 @@
 import BaseCompare from './BaseCompare';
 import logger from '@wdio/logger';
 import _ from 'lodash';
+const fs = require('fs');
+const path = require('path');
 
 import SpectreClient from 'nodeclient-spectre';
 
@@ -25,6 +27,9 @@ export default class Spectre extends BaseCompare {
     log.info(`${creationOptions} - Creating testrun`);
     const result = await this.spectreClient.createTestrun(this.project, this.suite);
     log.info(`${creationOptions} - Testrun created - Run-Id: #${result.id}`);
+    let test_run_url = `${this.spectreURL}/projects/${this.project.toLowerCase().replace(/ /g, '-')}/suites/${this.suite.toLowerCase().replace(/ /g, '-')}/runs/${result.id}`;
+    log.info(test_run_url);
+    fs.writeFileSync(path.resolve('./.spectre_test_run_url.json'), test_run_url);
     this.saveRuntimeConfig(runtimeConfigName, result);
   }
 
