@@ -27,7 +27,8 @@ export default class Spectre extends BaseCompare {
     log.info(`${creationOptions} - Creating testrun`);
     const result = await this.spectreClient.createTestrun(this.project, this.suite);
     log.info(`${creationOptions} - Testrun created - Run-Id: #${result.id}`);
-    let test_run_url = `${this.spectreURL}/projects/${this.project.toLowerCase().replace(/ /g, '-')}/suites/${this.suite.toLowerCase().replace(/ /g, '-')}/runs/${result.id}`;
+
+    let test_run_url = `${this.spectreURL}${result.url}`;
     log.info(test_run_url);
     fs.writeFileSync(path.resolve('./.spectre_test_run_url.json'), test_run_url);
     this.saveRuntimeConfig(runtimeConfigName, result);
