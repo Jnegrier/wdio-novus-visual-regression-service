@@ -10,6 +10,9 @@
     "src",
     "lib"
   ],
+  "engines": {
+    "node": ">= 10.22.0"
+  },
   "scripts": {
     "clean": "rimraf lib .tmp",
     "build": "npm run clean && babel ./src -d lib",
