@@ -35,19 +35,19 @@ class VisualRegressionLauncher {
 
   /**
    * Gets executed before test execution begins. At this point you can access
-   * all global variables, such as `browser`.
+   * all global variables, such as `this.options`.
    * It is the perfect place to define custom commands.
    * @param  {object} capabilities desiredCapabilities
    * @param  {[type]} specs        [description]
    * @return {Promise}
    */
   async before(capabilities, specs) {
-    this.validateConfig(browser.config);
+    this.validateConfig();
 
     this.compare = this.options.compare;
-    this.viewportChangePause = _.get(browser.config, 'visualRegression.viewportChangePause', 100);
-    this.viewports = _.get(browser.config, 'visualRegression.viewports');
-    this.orientations = _.get(browser.config, 'visualRegression.orientations');
+    this.viewportChangePause = _.get(this.options, 'viewportChangePause', 100);
+    this.viewports = this.options.viewports;
+    this.orientations = this.options.orientations;
     const userAgent = await browser.execute(getUserAgent);
     const { name, version, ua } = parsePlatform(userAgent);
 
@@ -175,9 +175,9 @@ class VisualRegressionLauncher {
     }
   }
 
-  validateConfig(config) {
+  validateConfig() {
     if (!_.isPlainObject(this.options) || !_.has(this.options, 'compare')) {
-      throw new Error('Please provide a visualRegression configuration with a compare method in your wdio-conf.js!');
+      throw new Error('Please provide a novus-visual-regression service configuration with a compare method in your wdio-conf.js!');
     }
   }
 
