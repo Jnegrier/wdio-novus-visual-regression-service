@@ -3,7 +3,7 @@ import logger from '@wdio/logger';
 import scrollbars from '../scripts/scrollbars';
 import modifyElements from '../scripts/modifyElements';
 
-const log = logger('wdio-novus-visual-regression-service:afterScreenshot');
+const log = logger('wdio-novus-mutatio-visual-regression-service:afterScreenshot');
 
 export default async function afterScreenshot(browser, options) {
   // show elements

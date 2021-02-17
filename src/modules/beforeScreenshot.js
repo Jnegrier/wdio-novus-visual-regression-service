@@ -5,7 +5,7 @@ import scrollbars from '../scripts/scrollbars';
 import modifyElements from '../scripts/modifyElements';
 import triggerResize from '../scripts/triggerResize';
 
-const log = logger('wdio-novus-visual-regression-service:beforeScreenshot');
+const log = logger('wdio-novus-mutatio-visual-regression-service:beforeScreenshot');
 
 export default async function beforeScreenshot(browser, options) {
   // hide scrollbars

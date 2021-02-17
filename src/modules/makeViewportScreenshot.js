@@ -9,7 +9,7 @@ import getScrollPosition from '../scripts/getScrollPosition';
 import getScreenDimensions from '../scripts/getScreenDimensions';
 import ScreenDimension from '../utils/ScreenDimension';
 
-const log = logger('wdio-novus-visual-regression-service:makeViewportScreenshot');
+const log = logger('wdio-novus-mutatio-visual-regression-service:makeViewportScreenshot');
 
 // Note: function name must be async to signalize WebdriverIO that this function returns a promise
 export default async function makeViewportScreenshot(browser, options = {}) {

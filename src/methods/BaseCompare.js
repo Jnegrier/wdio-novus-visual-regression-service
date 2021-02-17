@@ -2,7 +2,7 @@ import fs from 'fs-extra';
 import path from 'path';
 import logger from '@wdio/logger';
 
-const log = logger('wdio-novus-visual-regression-service:BaseCompare');
+const log = logger('wdio-novus-mutatio-visual-regression-service:BaseCompare');
 const runtimeConfigPath = __dirname;
 
 export default class BaseCompare {

@@ -12,7 +12,7 @@ import { cropImage, mergeImages } from '../utils/image';
 import ScreenDimension from '../utils/ScreenDimension';
 import normalizeScreenshot from '../utils/normalizeScreenshot';
 
-const log = logger('wdio-novus-visual-regression-service:makeAreaScreenshot');
+const log = logger('wdio-novus-mutatio-visual-regression-service:makeAreaScreenshot');
 const tmpDir = path.join(__dirname, '..', '..', '.tmp');
 
 async function storeScreenshot(browser, screenDimensions, cropDimensions, base64Screenshot, filePath) {

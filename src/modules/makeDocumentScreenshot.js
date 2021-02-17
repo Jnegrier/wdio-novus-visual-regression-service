@@ -6,7 +6,7 @@ import getScreenDimensions from '../scripts/getScreenDimensions';
 import ScreenDimension from '../utils/ScreenDimension';
 import logger from '@wdio/logger';
 
-const log = logger('wdio-novus-visual-regression-service:makeDocumentScreenshot');
+const log = logger('wdio-novus-mutatio-visual-regression-service:makeDocumentScreenshot');
 
 export default async function makeDocumentScreenshot(browser, options = {}) {
   log.info('start document screenshot');

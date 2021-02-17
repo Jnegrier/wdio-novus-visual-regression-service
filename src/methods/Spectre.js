@@ -6,7 +6,7 @@ const path = require('path');
 
 import SpectreClient from 'nodeclient-spectre';
 
-const log = logger('wdio-novus-visual-regression-service:Spectre');
+const log = logger('wdio-novus-mutatio-visual-regression-service:Spectre');
 const runtimeConfigName = 'spectre-run';
 
 export default class Spectre extends BaseCompare {

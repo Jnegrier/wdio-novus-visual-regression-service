@@ -1,30 +1,38 @@
-Novus Visual Regression Service
+Novus Mutatio Visual Regression Service
 ==========
 
-[![Build Status](https://travis-ci.com/Jnegrier/wdio-novus-visual-regression-service.svg?branch=master)](https://travis-ci.com/Jnegrier/wdio-novus-visual-regression-service)
 
 > Visual regression testing for WebdriverIO
 
-Based on the work of Jan-André Zinser on [wdio-visual-regression-service](https://github.com/zinserjan/wdio-visual-regression-service) and [wdio-screenshot](https://github.com/zinserjan/wdio-screenshot)
+Based on the work of Juan on [Novus Visual Regression Service](https://github.com/Jnegrier/wdio-novus-visual-regression-service),  Jan-André Zinser on [wdio-visual-regression-service](https://github.com/zinserjan/wdio-visual-regression-service) and [wdio-screenshot](https://github.com/zinserjan/wdio-screenshot)
 
+Although Novus Visual Regression Service works fine for most cases, it doesnt play well with browserstack on IOS devices with notch. This is an attempt to fix that. Multiple orientations passed from config are not tested.
+
+Pass
+       ```crop: {
+        toolbar: <x>,
+        addressBar: <y>,
+      }```
+
+as part of W3C capabilities with x and y being the portions you want to cut out ( depends on device pixel ratio and deviceOS and device type) and it should work .
 ## Installation
 
-You can install wdio-novus-visual-regression-service via NPM as usual:
+You can install wdio-novus-mutatio-visual-regression-service via NPM as usual:
 
 ```sh
-$ npm install wdio-novus-visual-regression-service --save-dev
+$ npm install wdio-novus-mutatio-visual-regression-service --save-dev
 ```
 
 Instructions on how to install `WebdriverIO` can be found [here.](http://webdriver.io/guide/getstarted/install.html)
 
 ## Configuration
-Setup wdio-novus-visual-regression-service by adding `novus-visual-regression` to the service section of your WebdriverIO config and define your desired comparison strategy in the service options.
+Setup wdio-novus-mutatio-visual-regression-service by adding `novus-visual-regression` to the service section of your WebdriverIO config and define your desired comparison strategy in the service options.
 
 ```js
 // wdio.conf.js
 
 var path = require('path');
-var VisualRegressionCompare = require('wdio-novus-visual-regression-service/compare');
+var VisualRegressionCompare = require('wdio-novus-mutatio-visual-regression-service/compare');
 
 function getScreenshotName(basePath) {
   return function(context) {
@@ -78,7 +86,7 @@ wait x milliseconds after viewport change. It can take a while for the browser t
     all screenshots will be taken in different screen orientations (e.g. for responsive design tests)
 
 ### Compare Methods
-wdio-novus-visual-regression-service allows the usage of different screenshot comparison methods.
+wdio-novus-mutatio-visual-regression-service allows the usage of different screenshot comparison methods.
 
 #### VisualRegressionCompare.LocalCompare
 As it's name suggests *LocalCompare* captures screenshots locally on your computer and compares them against previous runs.
@@ -142,7 +150,7 @@ number between 0 and 100 that defines the fuzz factor of Spectre's image compari
 // wdio.conf.js
 
 var path = require('path');
-var VisualRegressionCompare = require('wdio-novus-visual-regression-service/compare');
+var VisualRegressionCompare = require('wdio-novus-mutatio-visual-regression-service/compare');
 
 exports.config = {
   // ...
@@ -176,7 +184,7 @@ exports.config = {
 ```
 
 ## Usage
-wdio-novus-visual-regression-service enhances an WebdriverIO instance with the following commands:
+wdio-novus-mutatio-visual-regression-service enhances an WebdriverIO instance with the following commands:
 * `browser.checkViewport([{options}]);`
 * `browser.checkDocument([{options}]);`
 * `browser.checkElement(elementSelector, [{options}]);`

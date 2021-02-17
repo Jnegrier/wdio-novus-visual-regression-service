@@ -2,7 +2,7 @@ import fs from 'fs-extra';
 import BaseCompare from './BaseCompare';
 import logger from '@wdio/logger';
 
-const log = logger('wdio-novus-visual-regression-service:SaveScreenshot');
+const log = logger('wdio-novus-mutatio-visual-regression-service:SaveScreenshot');
 
 export default class SaveScreenshot extends BaseCompare {
   constructor(options = {}) {

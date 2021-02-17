@@ -8,7 +8,7 @@ import logger from '@wdio/logger';
 import getUserAgent from './scripts/getUserAgent';
 import { mapViewports, mapOrientations } from './modules/mapViewports';
 
-const log = logger('wdio-novus-visual-regression-service');
+const log = logger('wdio-novus-mutatio-visual-regression-service');
 
 class VisualRegressionLauncher {
   constructor(options) {

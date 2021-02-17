@@ -7,7 +7,7 @@ import FullpageScreenshotStrategy from './strategies/FullpageScreenshotStrategy'
 const regexFirefox = /firefox/i;
 const regexPhantomjs = /phantomjs/i;
 
-const log = logger('wdio-novus-visual-regression-service:ScreenshotStrategyManager');
+const log = logger('wdio-novus-mutatio-visual-regression-service:ScreenshotStrategyManager');
 
 function matchBrowserName(browser, regex) {
   return (

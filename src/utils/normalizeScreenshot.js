@@ -23,15 +23,16 @@ async function normalizeRetinaScreenshot(browser, screenDimensions, base64Screen
 }
 
 async function normalizeIOSScreenshot(browser, screenDimensions, base64Screenshot) {
-  const toolbarHeight = 44; // bottom toolbar has always a fixed height of 44px
-  const addressbarHeight = 44; // bottom toolbar has always a fixed height of 44px
 
+  const { capabilities:{deviceName}, requestedCapabilities:{crop}} = browser;
+  const { toolbar, addressbar } = crop === undefined ? 44 : crop;
+  // Detect if its iphone or ipad.
+  const isIphone = deviceName.includes('iPad') ? false : true;
+  const toolbarHeight = toolbar === undefined ? 44 : toolbar;
+  const addressbarHeight = addressbar === undefined ? 44 : addressbar;
   const viewportHeight = screenDimensions.applyScaleFactor(screenDimensions.getViewportHeight());
   const viewportWidth = screenDimensions.applyScaleFactor(screenDimensions.getViewportWidth());
 
-  // all iPad's have 1024..
-  const isIpad = screenDimensions.getScreenHeight() === 1024 || screenDimensions.getScreenWidth() === 1024;
-  const isIphone = !isIpad;
 
   // detect if status bar + navigation bar is shown
   const barsShown = viewportHeight < screenDimensions.getScreenHeight();
@@ -50,7 +51,7 @@ async function normalizeIOSScreenshot(browser, screenDimensions, base64Screensho
   const size = getBase64ImageSize(base64Screenshot);
   const deviceInLandscape = screenDimensions.getScreenWidth() > screenDimensions.getScreenHeight();
   const screenshotInLandscape = size.width > size.height;
-  const rotation = deviceInLandscape === screenshotInLandscape ? 0 : 270;
+  const rotation = deviceInLandscape === screenshotInLandscape ? 0 : 90;
 
   if (barsHeight > 0 || rotation > 0) {
     // crop only when necessary

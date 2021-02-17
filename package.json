@@ -1,7 +1,7 @@
 {
-  "name": "wdio-novus-visual-regression-service",
+  "name": "wdio-novus-mutatio-visual-regression-service",
   "version": "1.2.4",
-  "description": "Novus Visual regression testing for WebdriverIO",
+  "description": "Novus modified Visual regression testing for WebdriverIO",
   "main": "index.js",
   "files": [
     "index.js",
@@ -23,15 +23,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jnegrier/wdio-novus-visual-regression-service"
+    "url": "https://github.com/sumanth-tulupule/wdio-novus-mutatio-visual-regression-service"
   },
   "bugs": {
-    "url": "https://github.com/jnegrier/wdio-novus-visual-regression-service/issues"
+    "url": "https://github.com/sumanth-tulupule/wdio-novus-mutatio-visual-regression-service/issues"
   },
-  "author": "Juan Negrier",
+  "author": "Sumanth Tulupule",
   "contributors": [
     "Jan-André Zinser",
-    "Roy Sutton"
+    "Roy Sutton",
+    "Juan Negrier"
   ],
   "license": "MIT",
   "dependencies": {

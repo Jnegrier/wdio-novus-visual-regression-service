@@ -7,7 +7,7 @@ import getBoundingRects from '../scripts/getBoundingRects';
 
 import logger from '@wdio/logger';
 
-const log = logger('wdio-novus-visual-regression-service:makeElementScreenshot');
+const log = logger('wdio-novus-mutatio-visual-regression-service:makeElementScreenshot');
 
 export default async function makeElementScreenshot(browser, elementSelector, options = {}) {
   log.info('start element screenshot');

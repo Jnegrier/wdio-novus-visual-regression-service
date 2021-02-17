@@ -4,7 +4,7 @@ import BaseCompare from './BaseCompare';
 import logger from '@wdio/logger';
 import _ from 'lodash';
 
-const log = logger('wdio-novus-visual-regression-service:LocalCompare');
+const log = logger('wdio-novus-mutatio-visual-regression-service:LocalCompare');
 
 export default class LocalCompare extends BaseCompare {
   constructor(options = {}) {
