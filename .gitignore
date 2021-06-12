@@ -9,3 +9,4 @@ npm-debug.log
 .tmp
 logs
 lib
+.spectre_test_run_url.json
