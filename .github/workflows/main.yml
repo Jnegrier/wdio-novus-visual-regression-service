@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm ci
+      - run: npm ci --ignore-scripts
       - run: npm test
 
   publish:
@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: 16
           registry-url: 'https://registry.npmjs.org'
-      - run: npm ci
+      - run: npm ci --ignore-scripts
       - run: npm run prepare
       - run: npm publish
         env:
