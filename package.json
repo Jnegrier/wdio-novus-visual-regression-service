@@ -1,6 +1,6 @@
 {
   "name": "wdio-novus-visual-regression-service",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "Novus Visual regression testing for WebdriverIO",
   "main": "index.js",
   "files": [
@@ -11,13 +11,13 @@
     "lib"
   ],
   "engines": {
-    "node": ">= 10.22.0"
+    "node": ">= 16"
   },
   "scripts": {
     "clean": "rimraf lib .tmp",
     "build": "npm run clean && babel ./src -d lib",
     "test": "npm run test:unit",
-    "test:unit": "npm run clean && mocha --require @babel/register test/unit/**/*.test.js",
+    "test:unit": "npm run clean && mocha --require @babel/register \"test/unit/**/*.test.js\"",
     "prepare": "npm run build",
     "release": "np"
   },

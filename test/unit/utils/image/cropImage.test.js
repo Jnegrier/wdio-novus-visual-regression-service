@@ -1,7 +1,8 @@
 import path from 'path';
 import fsExtra from 'fs-extra';
+import { assert } from 'chai';
 
-import { cropImage } from '../../../../src/utils/image';
+import { cropImage } from '../../../../src/utils/image/jimp';
 import CropDimension from '../../../../src/utils/CropDimension';
 import saveBase64Image from '../../../../src/utils/saveBase64Image';
 
@@ -25,13 +26,14 @@ async function readAsBase64(file) {
 }
 
 describe('cropImage', function() {
-  it('throws error when invalid crop dimensions are provided', async function(done) {
+  it('throws error when invalid crop dimensions are provided', async function() {
+    let thrown = null;
     try {
       await cropImage('', {});
-      done('Should throw error');
     } catch (err) {
-      done();
+      thrown = err;
     }
+    assert.instanceOf(thrown, Error);
   });
 
   it('crops image', async function() {
